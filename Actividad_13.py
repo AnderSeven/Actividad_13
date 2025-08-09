@@ -35,7 +35,11 @@ def ordenar_por_paquetes(self):
 
     self.repartidores = quick_sort(self.repartidores)
 
-
+def buscar_repartidor(self, nombre):
+    for i in self.repartidores:
+        if i.nombre.lower() == nombre.lower():
+            return i
+    return None
 
 opciones = 0
 a = False

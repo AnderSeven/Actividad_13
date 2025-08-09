@@ -74,6 +74,16 @@ while a == False:
             else:
                 print("No hay repartidores para ordenar")
         case 3:
+            if empresa.repartidores:
+                nombre = input("Ingrese el nombre del repartidor a buscar: ")
+                repartidor = empresa.buscar_repartidor(nombre)
+                if repartidor:
+                    print("Repartidor encontrado")
+                    print(f"\n{repartidor.nombre} - {repartidor.paquetes} paquetes - Zona: {repartidor.zona}")
+                else:
+                    print("No hay ningun repartidor con ese nombre")
+            else:
+                print("No hay repartidores registrados")
         case 4:
         case 5:
         case 6:

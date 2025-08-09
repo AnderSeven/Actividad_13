@@ -23,31 +23,46 @@ class EmpresaMensajeria:
         self.repartidores.append(repartidor)
         return True
 
-def ordenar_por_paquetes(self):
-    def quick_sort(lista):
-        if len(lista) <= 1:
-            return lista
-        pivote = lista[0]
-        mayores = [x for x in lista[1:] if x.paquetes > pivote.paquetes]
-        iguales = [x for x in lista if x.paquetes == pivote.paquetes]
-        menores = [x for x in lista[1:] if x.paquetes < pivote.paquetes]
-        return quick_sort(mayores) + iguales + quick_sort(menores)
+    def ordenar_por_paquetes(self):
+        def quick_sort(lista):
+            if len(lista) <= 1:
+                return lista
+            pivote = lista[0]
+            mayores = [x for x in lista[1:] if x.paquetes > pivote.paquetes]
+            iguales = [x for x in lista if x.paquetes == pivote.paquetes]
+            menores = [x for x in lista[1:] if x.paquetes < pivote.paquetes]
+            return quick_sort(mayores) + iguales + quick_sort(menores)
 
-    self.repartidores = quick_sort(self.repartidores)
+        self.repartidores = quick_sort(self.repartidores)
 
-def buscar_repartidor(self, nombre):
-    for i in self.repartidores:
-        if i.nombre.lower() == nombre.lower():
-            return i
-    return None
+    def buscar_repartidor(self, nombre):
+        for i in self.repartidores:
+            if i.nombre.lower() == nombre.lower():
+                return i
+        return None
 
-def mostrar_ranking(self):
-    if len(self.repartidores) > 0:
-        print("---Ranking de repartidores---")
-        for repartidor in self.repartidores:
-            print(repartidor)
-    else:
-        print("No hay repartidores registrados")
+    def mostrar_ranking(self):
+        if len(self.repartidores) > 0:
+            print("---Ranking de repartidores---")
+            for repartidor in self.repartidores:
+                print(repartidor)
+        else:
+            print("No hay repartidores registrados")
+
+    def estadisticas(self):
+        if len(self.repartidores) > 0:
+            total = sum(r.paquetes for r in self.repartidores)
+            promedio = total / len(self.repartidores)
+            max_p = max(r.paquetes for r in self.repartidores)
+            min_p = min(r.paquetes for r in self.repartidores)
+
+            print("---Estadisticas---")
+            print(f"Total de paquetes entregados: {total}")
+            print(f"Promedio de paquetes por repartidor: {promedio:.2f}")
+            print(f"Maximo de entregas: {max_p} paquetes")
+            print(f"Minimo de entregas: {min_p} paquetes")
+        else:
+            print("No hay repartidores registrados")
 
 empresa = EmpresaMensajeria()
 opciones = 0
@@ -95,6 +110,7 @@ while a == False:
         case 4:
             empresa.mostrar_ranking()
         case 5:
+            empresa.estadisticas()
         case 6:
             print("Gracias por usar el sistema")
             a = True

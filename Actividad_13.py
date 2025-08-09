@@ -24,7 +24,17 @@ class EmpresaMensajeria:
         return True
 
 def ordenar_por_paquetes(self):
-    print("asddf")
+    def quick_sort(lista):
+        if len(lista) <= 1:
+            return lista
+        pivote = lista[0]
+        mayores = [x for x in lista[1:] if x.paquetes > pivote.paquetes]
+        iguales = [x for x in lista if x.paquetes == pivote.paquetes]
+        menores = [x for x in lista[1:] if x.paquetes < pivote.paquetes]
+        return quick_sort(mayores) + iguales + quick_sort(menores)
+
+    self.repartidores = quick_sort(self.repartidores)
+
 
 
 opciones = 0

@@ -41,6 +41,7 @@ def buscar_repartidor(self, nombre):
             return i
     return None
 
+empresa = EmpresaMensajeria()
 opciones = 0
 a = False
 
@@ -55,7 +56,23 @@ while a == False:
     opciones = int(input("Elija una opcion: "))
     match opciones:
         case 1:
+            cantidad = int(input("Ingrese la cantidad de repartidores que desea agregar:  "))
+            for i in range(cantidad):
+                print(f"\nDatos del repartidor {i + 1}:")
+                nombre = input("Nombre: ")
+                paquetes = int(input("Paquetes entregados: "))
+                zona = input("Zona: ")
+                nuevo_repartidor = Repartidor(nombre, paquetes, zona)
+                if not empresa.agregar_repartidor(nuevo_repartidor):
+                    i -= 1
         case 2:
+            if empresa.repartidores:
+                empresa.ordenar_por_paquetes()
+                print("---Repartidores---")
+                for repartidor in empresa.repartidores:
+                    print(repartidor)
+            else:
+                print("No hay repartidores para ordenar")
         case 3:
         case 4:
         case 5:

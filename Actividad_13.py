@@ -41,6 +41,14 @@ def buscar_repartidor(self, nombre):
             return i
     return None
 
+def mostrar_ranking(self):
+    if len(self.repartidores) > 0:
+        print("---Ranking de repartidores---")
+        for repartidor in self.repartidores:
+            print(repartidor)
+    else:
+        print("No hay repartidores registrados")
+
 empresa = EmpresaMensajeria()
 opciones = 0
 a = False
@@ -85,6 +93,7 @@ while a == False:
             else:
                 print("No hay repartidores registrados")
         case 4:
+            empresa.mostrar_ranking()
         case 5:
         case 6:
             print("Gracias por usar el sistema")

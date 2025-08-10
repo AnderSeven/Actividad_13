@@ -13,12 +13,11 @@ class EmpresaMensajeria:
 
     def agregar_repartidor(self, repartidor):
         for i in self.repartidores:
-            if  i.nombre.lower() == repartidor.nombre.lower():
+            if i.nombre.lower() == repartidor.nombre.lower():
                 print("El nombre ya esta en uso, ingrese otro")
                 return False
-
         if repartidor.paquetes < 0:
-            print("La cantidad de paquetes debe der ser un numero entero positivo")
+            print("La cantidad de paquetes debe ser un numero entero positivo")
             return False
         self.repartidores.append(repartidor)
         return True
@@ -32,7 +31,6 @@ class EmpresaMensajeria:
             iguales = [x for x in lista if x.paquetes == pivote.paquetes]
             menores = [x for x in lista[1:] if x.paquetes < pivote.paquetes]
             return quick_sort(mayores) + iguales + quick_sort(menores)
-
         self.repartidores = quick_sort(self.repartidores)
 
     def buscar_repartidor(self, nombre):
@@ -55,12 +53,13 @@ class EmpresaMensajeria:
             promedio = total / len(self.repartidores)
             max_p = max(r.paquetes for r in self.repartidores)
             min_p = min(r.paquetes for r in self.repartidores)
-
+            maximos = [r.nombre for r in self.repartidores if r.paquetes == max_p]
+            minimos = [r.nombre for r in self.repartidores if r.paquetes == min_p]
             print("---Estadisticas---")
             print(f"Total de paquetes entregados: {total}")
             print(f"Promedio de paquetes por repartidor: {promedio:.2f}")
-            print(f"Maximo de entregas: {max_p} paquetes")
-            print(f"Minimo de entregas: {min_p} paquetes")
+            print(f"Maximo de entregas: {', '.join(maximos)} con {max_p} paquetes")
+            print(f"Minimo de entregas: {', '.join(minimos)} con {min_p} paquetes")
         else:
             print("No hay repartidores registrados")
 
@@ -79,7 +78,7 @@ while a == False:
     opciones = int(input("Elija una opcion: "))
     match opciones:
         case 1:
-            cantidad = int(input("Ingrese la cantidad de repartidores que desea agregar:  "))
+            cantidad = int(input("Ingrese la cantidad de repartidores que desea agregar: "))
             for i in range(cantidad):
                 print(f"\nDatos del repartidor {i + 1}:")
                 nombre = input("Nombre: ")
@@ -102,7 +101,7 @@ while a == False:
                 repartidor = empresa.buscar_repartidor(nombre)
                 if repartidor:
                     print("Repartidor encontrado")
-                    print(f"\n{repartidor.nombre} - {repartidor.paquetes} paquetes - Zona: {repartidor.zona}")
+                    print(f"\n{repartidor.nombre} - {repartidor.paquetes} paquetes - zona: {repartidor.zona}")
                 else:
                     print("No hay ningun repartidor con ese nombre")
             else:

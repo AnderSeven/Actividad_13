@@ -1,3 +1,14 @@
+def quick_sort(lista, key):
+    if len(lista) <= 1:
+        return lista
+    pivote = lista[0]
+    mayores = [x for x in lista[1:] if x[1][key] > pivote[1][key]]
+    iguales = [x for x in lista if x[1][key] == pivote[1][key]]
+    menores = [x for x in lista[1:] if x[1][key] < pivote[1][key]]
+    return quick_sort(mayores, key) + iguales + quick_sort(menores, key)
+
+
+
 opciones = 0
 a = False
 while a == False:

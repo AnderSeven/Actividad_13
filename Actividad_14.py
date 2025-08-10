@@ -20,9 +20,9 @@ def agregar_participantes():
         while s == False:
             dorsal = int(input("Ingrese el dorsal: "))
             if dorsal in participantes:
-                s = True
-            else:
                 print("Este dorsal ya esta en uso, ingrese otro")
+            else:
+                s = True
         nombre = input("Ingrese el nombre: ")
         s = False
         while s == False:
@@ -49,13 +49,23 @@ def mostrar_orden_nombre():
     else:
         print("No hay participantes registrados")
 
+def mostrar_orden_edad():
+    if len(participantes) > 0:
+        lista = list(participantes.items())
+        ordenados = quick_sort(lista, "edad")
+        print("\nParticipantes ordenados por edad: ")
+        for dorsal, datos in ordenados:
+            print(f"- {datos['nombre']} (Dorsal {dorsal}, Edad {datos['edad']}, Categoria: {datos['categoria']})")
+    else:
+        print("No hay participantes registrados")
+
 participantes = {}
 opciones = 0
 a = False
 while a == False:
     print("---Menu---")
     print("1. Agregar participantes")
-    print("2. Mostrar participantes ordenador por nombre")
+    print("2. Mostrar participantes ordenados por nombre")
     print("3. Mostrar participantes ordenados por edad")
     print("4. salir")
     opciones = int(input("Elija una opcion: "))
@@ -65,6 +75,7 @@ while a == False:
         case 2:
             mostrar_orden_nombre()
         case 3:
+            mostrar_orden_edad()
         case 4:
             print("Gracias por usar el sistema")
             a = True

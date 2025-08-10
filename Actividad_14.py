@@ -39,6 +39,16 @@ def agregar_participantes():
         }
         print("Se ha registrado al participante con exito!")
 
+def mostrar_orden_nombre():
+    if len(participantes) > 0:
+        lista = list(participantes.items())
+        ordenados = quick_sort(lista, "nombre")
+        print("\nParticipantes ordenados por nombre: ")
+        for dorsal, datos in ordenados:
+            print(f"- {datos['nombre']} (Dorsal {dorsal}, Edad {datos['edad']}, Categoria: {datos['categoria']})")
+    else:
+        print("No hay participantes registrados")
+
 participantes = {}
 opciones = 0
 a = False
@@ -53,6 +63,7 @@ while a == False:
         case 1:
             agregar_participantes()
         case 2:
+            mostrar_orden_nombre()
         case 3:
         case 4:
             print("Gracias por usar el sistema")
